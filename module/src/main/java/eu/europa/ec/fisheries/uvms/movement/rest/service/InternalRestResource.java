@@ -40,6 +40,7 @@ import java.util.stream.Collectors;
 @Produces(value = {MediaType.APPLICATION_JSON})
 public class InternalRestResource {
     private static final Logger LOG = LoggerFactory.getLogger(InternalRestResource.class);
+    public static final String REQUEST_ID = "requestId";
 
     @Inject
     private MovementService movementService;
@@ -113,7 +114,7 @@ public class InternalRestResource {
         try {
             MovementDto byId = MovementMapper.mapToMovementDto(movementService.getById(movementId));
             return Response.ok(byId).type(MediaType.APPLICATION_JSON)
-                    .header("MDC", MDC.get("requestId")).build();
+                    .header("MDC", MDC.get(REQUEST_ID)).build();
         } catch (Exception e) {
             LOG.error("[ Error when getting movement. ]", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(ExceptionUtils.getRootCause(e)).build();
@@ -130,7 +131,7 @@ public class InternalRestResource {
             Instant yesterday = afterInstant.minusSeconds(60L * 60L * 24L); // 1 day in seconds
             long count = movementDao.countNrOfMovementsForAssetBetween(UUID.fromString(id),yesterday, afterInstant);
             return Response.ok().entity(count).type(MediaType.APPLICATION_JSON)
-                    .header("MDC", MDC.get("requestId")).build();
+                    .header("MDC", MDC.get(REQUEST_ID)).build();
         } catch (Exception e) {
             LOG.error("[ Error when counting movements. ]", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(ExceptionUtils.getRootCause(e)).build();
@@ -145,7 +146,7 @@ public class InternalRestResource {
         try {
             int remappedMovements = movementService.remapMovementConnectInMovement(movementConnectFrom, movementConnectTo);
             return Response.ok(remappedMovements)
-                    .header("MDC", MDC.get("requestId")).build();
+                    .header("MDC", MDC.get(REQUEST_ID)).build();
         } catch (Exception e) {
             LOG.error("[ Error when remapping movements. ]", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(ExceptionUtils.getRootCause(e)).build();
@@ -158,7 +159,7 @@ public class InternalRestResource {
         try {
             movementService.removeMovementConnect(movementConnectId);
             return Response.ok()
-                    .header("MDC", MDC.get("requestId")).build();
+                    .header("MDC", MDC.get(REQUEST_ID)).build();
         } catch (Exception e) {
             LOG.error("[ Error when removing movement connect. ]", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(ExceptionUtils.getRootCause(e)).build();
@@ -175,7 +176,7 @@ public class InternalRestResource {
         List<MovementSourceType> sourceTypes = convertToMovementSourceTypes(request.getSources());
 
         if (vesselIds.isEmpty()) {
-            return Response.ok(Collections.emptyList()).header("MDC", MDC.get("requestId")).build();
+            return Response.ok(Collections.emptyList()).header("MDC", MDC.get(REQUEST_ID)).build();
         }
 
         try {
@@ -188,7 +189,7 @@ public class InternalRestResource {
             List<MovementDto> movementDtos = MovementMapper.mapToMovementDtoList(movements);
 
             Response.ResponseBuilder ok = Response.ok(movementDtos);
-            return ok.header("MDC", MDC.get("requestId")).build();
+            return ok.header("MDC", MDC.get(REQUEST_ID)).build();
         } catch (Exception e) {
             LOG.error("[ Error when getting micro movements for vessel ids ]", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(ExceptionUtils.getRootCause(e)).build();
@@ -212,9 +213,9 @@ public class InternalRestResource {
     @RequiresFeature(UnionVMSFeature.manageInternalRest)
     public Response getMovementDtoByIdList(List<UUID> moveIds) {
         try {
-            List<MovementDto> MovementDtos = movementService.getMovementsByMoveIds(moveIds);
-            return Response.ok(MovementDtos).type(MediaType.APPLICATION_JSON)
-                    .header("MDC", MDC.get("requestId")).build();
+            List<MovementDto> movementDtos = movementService.getMovementsByMoveIds(moveIds);
+            return Response.ok(movementDtos).type(MediaType.APPLICATION_JSON)
+                    .header("MDC", MDC.get(REQUEST_ID)).build();
         } catch (Exception e) {
             LOG.error("[ Error when getting movementDtos. ]", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(ExceptionUtils.getRootCause(e)).build();
@@ -227,11 +228,11 @@ public class InternalRestResource {
     public Response getCursorBasedList(CursorPagination cursorPagination) {
         try {
             List<MovementDto> list = movementService.getCursorBasedList(cursorPagination);
-            return Response.ok(list).header("MDC", MDC.get("requestId")).build();
+            return Response.ok(list).header("MDC", MDC.get(REQUEST_ID)).build();
         } catch (Exception e) {
             LOG.error("[ Error when getting movements by list cursor. ]", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(ExceptionUtils.getRootCause(e))
-                    .header("MDC", MDC.get("requestId")).build();
+                    .header("MDC", MDC.get(REQUEST_ID)).build();
         }
     }
 }
