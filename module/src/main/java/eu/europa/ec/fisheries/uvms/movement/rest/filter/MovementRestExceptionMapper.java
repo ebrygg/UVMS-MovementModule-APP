@@ -17,8 +17,6 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class MovementRestExceptionMapper implements ExceptionMapper<Exception> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MovementRestExceptionMapper.class);
-
     @Context
     private HttpServletRequest request;
     @Context
