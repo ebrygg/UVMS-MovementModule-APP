@@ -47,7 +47,7 @@ public class GetMovementListByQueryResponse
 
     //Moved out of the wsdl files since they, by standard, does not generate setters for list et al and jsonB really needs setters to work
 
-    private final static long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     protected List<MovementType> movement;
     @XmlElement(required = true)
     protected BigInteger totalNumberOfPages;
@@ -78,7 +78,7 @@ public class GetMovementListByQueryResponse
      */
     public List<MovementType> getMovement() {
         if (movement == null) {
-            movement = new ArrayList<MovementType>();
+            movement = new ArrayList<>();
         }
         return this.movement;
     }
