@@ -13,6 +13,10 @@ package eu.europa.ec.fisheries.uvms.movement.rest;
 
 public class RestConstants {
 
+    private RestConstants() {
+        // Utility class
+    }
+
     public static final String MODULE_REST = "/rest";
     public static final String MODULE_NAME = "/movement";
 

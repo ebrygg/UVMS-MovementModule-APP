@@ -8,6 +8,10 @@ import java.util.List;
 
 public class RestUtilMapper {
 
+    private RestUtilMapper() {
+        // Utility class
+    }
+
     public static List<MovementSourceType> convertToMovementSourceTypes (List<String> sources) {
         List<MovementSourceType> sourceTypes = new ArrayList<>();
         if (sources == null || sources.isEmpty()) {
