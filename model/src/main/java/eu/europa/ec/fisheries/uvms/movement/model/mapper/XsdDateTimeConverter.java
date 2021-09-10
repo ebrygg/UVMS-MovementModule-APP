@@ -19,6 +19,10 @@ import java.util.Date;
 
 public class XsdDateTimeConverter {
 
+    private XsdDateTimeConverter() {
+        // Utility class
+    }
+
     public static Date unmarshal(String dateTime) {
         return DatatypeConverter.parseDate(dateTime).getTime();
     }
