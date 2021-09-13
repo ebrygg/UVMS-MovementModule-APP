@@ -16,8 +16,6 @@ import eu.europa.ec.fisheries.uvms.movement.service.dto.ManualMovementDto;
 import eu.europa.ec.fisheries.uvms.movement.service.entity.IncomingMovement;
 import eu.europa.ec.fisheries.uvms.movement.service.mapper.MovementMapper;
 import eu.europa.ec.fisheries.uvms.movement.service.message.ExchangeBean;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -25,8 +23,6 @@ import java.util.UUID;
 
 @Stateless
 public class ManualMovementService {
-
-    private static final Logger LOG = LoggerFactory.getLogger(ManualMovementService.class);
 
     @Inject
     private MovementCreateBean movementCreateBean;
