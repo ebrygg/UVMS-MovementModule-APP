@@ -34,7 +34,7 @@ public class AlarmListCriteria
     implements Serializable
 {
 
-    private final static long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected AlarmSearchKey key;
