@@ -19,6 +19,9 @@ import java.util.UUID;
 
 public class AuditModuleRequestMapper {
 
+    public AuditModuleRequestMapper() {
+    }
+
     public static String mapAuditLogMovementCreated(UUID guid, String username) {
         return mapToAuditLog(AuditObjectTypeEnum.AUTOMATIC_POSITION_REPORT.getValue(), AuditOperationEnum.CREATE.getValue(), guid.toString(), username);
     }
