@@ -72,7 +72,7 @@ public class MovementEventBean {
             String responseString = MovementModuleResponseMapper.mapToMovementMapResponse(movementList.getMovementMap());
 
             messageProducer.sendResponseMessageToSender(jmsMessage, responseString);
-            LOG.info("Response sent back to requestor on queue [ {} ]", jmsMessage!= null ? jmsMessage.getJMSReplyTo() : "Null!!!");
+            LOG.info("Response sent back to requestor on queue [ {} ]", jmsMessage.getJMSReplyTo());
         } catch (Exception ex) {
             LOG.error("[ Error when creating getMovementMapByQuery ] ", ex);
             if (maxRedeliveriesReached(jmsMessage)) {
