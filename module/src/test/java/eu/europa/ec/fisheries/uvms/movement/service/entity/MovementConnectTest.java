@@ -55,4 +55,28 @@ public class MovementConnectTest {
         // Then
         assertEquals(1, i);
     }
+
+    @Test
+    public void getNameTest() {
+        MovementConnect movementConnect = new MovementConnect();
+        movementConnect.setName("test");
+
+        assertEquals("test", movementConnect.getName());
+    }
+
+    @Test
+    public void getUpdatedByTest() {
+        MovementConnect movementConnect = new MovementConnect();
+        movementConnect.setUpdatedBy("test");
+
+        assertEquals("test", movementConnect.getUpdatedBy());
+    }
+
+    @Test
+    public void getFlagStateTest() {
+        MovementConnect movementConnect = new MovementConnect();
+        movementConnect.setFlagState("test");
+
+        assertEquals("test", movementConnect.getFlagState());
+    }
 }

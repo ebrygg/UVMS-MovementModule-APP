@@ -13,7 +13,6 @@ package eu.europa.ec.fisheries.uvms.movement.service.mapper;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,17 +54,17 @@ public class SearchMapperListTest extends TransactionalTests {
 
         for (MovementTypeType mt : MovementTypeType.values()) {
             Integer data = SearchFieldMapper.getOrdinalValueFromEnum(getSearchValue(mt.name(), SearchField.MOVMENT_TYPE));
-            assertTrue(mt.ordinal() == data);
+            assertEquals(Integer.valueOf(mt.ordinal()), data);
         }
 
         for (MovementSourceType mst : MovementSourceType.values()) {
             Integer data = SearchFieldMapper.getOrdinalValueFromEnum(getSearchValue(mst.name(), SearchField.SOURCE));
-            assertTrue(mst.ordinal() == data);
+            assertEquals(Integer.valueOf(mst.ordinal()), data);
         }
 
         for (SegmentCategoryType sct : SegmentCategoryType.values()) {
             Integer data = SearchFieldMapper.getOrdinalValueFromEnum(getSearchValue(sct.name(), SearchField.CATEGORY));
-            assertTrue(sct.ordinal() == data);
+            assertEquals(Integer.valueOf(sct.ordinal()), data);
         }
     }
 
@@ -81,7 +80,7 @@ public class SearchMapperListTest extends TransactionalTests {
 
         List<SearchValue> mapSearchField = SearchFieldMapper.mapListCriteriaToSearchValue(listCriterias);
 
-        assertTrue(mapSearchField.size() == 1);
+        assertEquals(1, mapSearchField.size());
 
         String data = SearchFieldMapper.createMinimalSelectSearchSql(mapSearchField, true);
         assertEquals("SELECT  m FROM MinimalMovement m INNER JOIN FETCH m.movementConnect mc  WHERE  ( toSeg.segmentCategory = 6 OR fromSeg.segmentCategory = 6 )  ORDER BY m.timestamp DESC ", data);
@@ -104,7 +103,7 @@ public class SearchMapperListTest extends TransactionalTests {
 
         List<SearchValue> mapSearchField = SearchFieldMapper.mapListCriteriaToSearchValue(listCriterias);
 
-        assertTrue(mapSearchField.size() == 2);
+        assertEquals(2, mapSearchField.size());
 
         String data = SearchFieldMapper.createSelectSearchSql(mapSearchField, false);
         assertThat(data, CoreMatchers.containsString("m.status = '11'"));
@@ -123,7 +122,7 @@ public class SearchMapperListTest extends TransactionalTests {
 
         List<SearchValue> mapSearchField = SearchFieldMapper.mapListCriteriaToSearchValue(listCriterias);
 
-        assertTrue(mapSearchField.size() == 1);
+        assertEquals(1, mapSearchField.size());
 
         String data = SearchFieldMapper.createCountSearchSql(mapSearchField, true);
         String correctOutput = "SELECT COUNT( m) FROM Movement m  INNER JOIN m.movementConnect mc  LEFT JOIN m.track tra "

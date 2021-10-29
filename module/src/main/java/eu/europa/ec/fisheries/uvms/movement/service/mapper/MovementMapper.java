@@ -21,8 +21,6 @@ import eu.europa.ec.fisheries.uvms.movement.service.dto.ManualMovementDto;
 import eu.europa.ec.fisheries.uvms.movement.service.entity.IncomingMovement;
 import eu.europa.ec.fisheries.uvms.movement.service.entity.Movement;
 import org.locationtech.jts.geom.Point;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -31,8 +29,6 @@ import java.util.List;
 
 
 public class MovementMapper {
-
-    private static final Logger LOG = LoggerFactory.getLogger(MovementMapper.class);
 
     private MovementMapper() {}
 

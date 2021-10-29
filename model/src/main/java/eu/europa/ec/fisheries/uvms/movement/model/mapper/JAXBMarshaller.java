@@ -31,6 +31,8 @@ public class JAXBMarshaller {
     private static final Logger LOG = LoggerFactory.getLogger(JAXBMarshaller.class);
 
     private static Map<String, JAXBContext> contexts = new HashMap<>();
+    
+    private JAXBMarshaller() {}
 
     /**
      * Marshalls a JAXB Object to a XML String representation

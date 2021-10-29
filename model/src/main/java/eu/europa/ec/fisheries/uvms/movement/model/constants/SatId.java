@@ -14,7 +14,7 @@ public enum SatId {
 
     public static SatId fromInt(Integer code) {
         for (SatId type : SatId.values()) {
-            if (type.value == code) {
+            if (type.value.equals(code)) {
                 return type;
             }
         }

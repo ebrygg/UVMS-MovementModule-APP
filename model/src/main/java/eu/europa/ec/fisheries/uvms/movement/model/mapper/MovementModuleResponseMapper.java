@@ -20,7 +20,10 @@ import java.util.List;
 
 public class MovementModuleResponseMapper {
 
- 
+    private MovementModuleResponseMapper() {
+        // Utility class
+    }
+
     public static String mapTogetMovementListByQueryResponse(List<MovementType> movementList) {
         GetMovementListByQueryResponse response = new GetMovementListByQueryResponse();
         response.getMovement().addAll(movementList);

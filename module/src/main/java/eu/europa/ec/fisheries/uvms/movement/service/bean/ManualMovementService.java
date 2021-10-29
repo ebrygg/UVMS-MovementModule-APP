@@ -14,7 +14,6 @@ package eu.europa.ec.fisheries.uvms.movement.service.bean;
 import eu.europa.ec.fisheries.uvms.movement.service.dto.ManualMovementDto;
 import eu.europa.ec.fisheries.uvms.movement.service.entity.IncomingMovement;
 import eu.europa.ec.fisheries.uvms.movement.service.mapper.MovementMapper;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.UUID;

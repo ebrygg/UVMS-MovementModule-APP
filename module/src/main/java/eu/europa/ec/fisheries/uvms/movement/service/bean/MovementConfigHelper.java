@@ -27,7 +27,7 @@ public class MovementConfigHelper implements ConfigHelper {
     @PersistenceContext
     protected EntityManager em;
 
-    private final static String MOVEMENT_PU = "movement";
+    private static final String MOVEMENT_PU = "movement";
 
     @Override
     public List<String> getAllParameterKeys() {

@@ -497,7 +497,7 @@ public class MovementDaoIntTest extends TransactionalTests {
         assertThat(movements2.size(), CoreMatchers.is(1));
         assertThat(movements2.get(0).getId(), CoreMatchers.is(sortedIds.get(1)));
         
-        assertTrue(movements2.get(0).equals(movements.get(1)));
+        assertEquals(movements2.get(0), movements.get(1));
         
     }
 

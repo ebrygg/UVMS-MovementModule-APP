@@ -40,7 +40,7 @@ public class GetMovementMapByQueryResponse
         implements Serializable
 {
 
-    private final static long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<MovementMapResponseType> movementMap;
 
