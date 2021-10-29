@@ -185,7 +185,7 @@ public class InternalRestResource {
                     .map(UUID::fromString)
                     .collect(Collectors.toList());
 
-            List<Movement> movements = movementDao.getMicroMovementsForConnectIdsBetweenDates(uuids, fromDate, toDate, sourceTypes);
+            List<Movement> movements = movementDao.getMovementsForConnectIdsBetweenDates(uuids, fromDate, toDate, sourceTypes);
             List<MovementDto> movementDtos = MovementMapper.mapToMovementDtoList(movements);
 
             Response.ResponseBuilder ok = Response.ok(movementDtos);

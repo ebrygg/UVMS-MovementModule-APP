@@ -17,7 +17,9 @@ import java.util.UUID;
 
 public class IncomingMovementMapper {
 
-
+    private IncomingMovementMapper() {
+        // private constructor because utility class
+    }
     public static Movement mapNewMovementEntity(IncomingMovement ic, String username) {
         Movement entity = new Movement();
 
@@ -106,7 +108,7 @@ public class IncomingMovementMapper {
         md.setMobileTerminalMemberNumber(response.getMemberNumber());
         md.setMobileTerminalSerialNumber(response.getSerialNumber());
         //TODO: missing
-        //md.setMobileTerminalStatus();
+
         md.setSource(movement.getSource().value());
         if (movement.getSourceSatelliteId() != null) {
             md.setOceanRegion(movement.getSourceSatelliteId().name());
@@ -117,10 +119,6 @@ public class IncomingMovementMapper {
             md.setPreviousLatitude(previousMovement.getLocation().getY());
             md.setPreviousLongitude(previousMovement.getLocation().getX());
         }
-        
-        /*
-    private List<String> vicinityOf;
-         */
 
         return md;
     }
